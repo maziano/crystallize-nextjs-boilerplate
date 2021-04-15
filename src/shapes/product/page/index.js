@@ -46,11 +46,11 @@ export default function ProductShape({ product, locale }) {
   );
 
   // Recommended products
-  const [recommendedProducts, setRecommendedProducts] = useState(null);
+  const [othersViewedProducts, setOthersViewedProducts] = useState(null);
 
   useEffect(() => {
     (async function getRecommendations() {
-      if (recommendedProducts) {
+      if (othersViewedProducts) {
         return;
       }
 
@@ -83,7 +83,7 @@ export default function ProductShape({ product, locale }) {
             };
           });
 
-          setRecommendedProducts(products);
+          setOthersViewedProducts(products);
         });
     })();
   }, []);
@@ -177,12 +177,12 @@ export default function ProductShape({ product, locale }) {
         </RelatedContainer>
       )}
 
-      {Boolean(recommendedProducts) && (
+      {Boolean(othersViewedProducts) && (
         <RelatedContainer>
           <Collection
-            items={recommendedProducts}
-            title={t('recommendedProduct', {
-              count: recommendedProducts.length
+            items={othersViewedProducts}
+            title={t('othersViewedProducts', {
+              count: othersViewedProducts.length
             })}
           />
         </RelatedContainer>
