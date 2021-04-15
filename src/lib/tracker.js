@@ -1,9 +1,10 @@
 let loaded = false;
 
 export function waitUntilLoaded() {
+  const startTime = Date.now();
   return new Promise((resolve) => {
     (function check() {
-      if (loaded) {
+      if (loaded || Date.now() - startTime > 3000) {
         resolve();
       } else {
         setTimeout(check, 50);
@@ -63,5 +64,5 @@ export function logEvent(payload) {
 }
 
 export function getVisitorId() {
-  return window.gaGlobal?.vid;
+  return window.gaGlobal?.vid || 'n/a';
 }
